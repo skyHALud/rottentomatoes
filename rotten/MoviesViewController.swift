@@ -53,8 +53,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         var posters = movie["posters"] as NSDictionary
         var posterUrl = posters["thumbnail"] as String
+        var ratings = movie["ratings"] as NSDictionary
+        var criticsRating = ratings["critics_rating"] as NSString
+        var criticsScore = ratings["critics_score"] as NSInteger
+       var range = criticsRating.rangeOfString("Fresh") as NSRange
+        var tomatoIcon: String
+        if (range.location != NSNotFound) {
+            tomatoIcon = "freshTomato.png"
+        } else {
+            tomatoIcon = "splashTomato.png"
+        }
         
         cell.posterView.setImageWithURL(NSURL(string: posterUrl))
+        //cell.posterView.setImageWithURL(NSURL(string: posterUrl))
+        cell.tomatoIconView.image = UIImage(named: tomatoIcon)
+        cell.rottenScoreLabel.text = "\(criticsScore)%"
+        cell.ratingLabel.text = movie["mpaa_rating"] as? String
 
         return cell
     }
