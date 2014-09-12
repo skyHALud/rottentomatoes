@@ -76,6 +76,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.rottenScoreLabel.text = "\(criticsScore)%"
         cell.ratingLabel.text = movie["mpaa_rating"] as? String
 
+        if (lastIndexRowRequestedForTableView == 0 && indexPath.row == 4) {
+            return cell
+        }
         // I want to hide the search bar when the user is trying to scroll up, but show the search 
         // bar when the user is trying to scroll down. I can potentially figure that out by 
         // checking what was requested last. Based on that I can figure out if the user is 
