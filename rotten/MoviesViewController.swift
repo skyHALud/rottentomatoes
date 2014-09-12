@@ -10,8 +10,15 @@ import UIKit
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var moviesSearchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     var movies: [NSDictionary] = []
+    var lastIndexRowRequestedForTableView = -1
+    var searchBarHidden = false;
+    var isPreviousDirectionscrollUp = true;
+    var scrollDirectionChanged = false;
+    var doThisOnceFlag = true;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,20 +63,81 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         var ratings = movie["ratings"] as NSDictionary
         var criticsRating = ratings["critics_rating"] as NSString
         var criticsScore = ratings["critics_score"] as NSInteger
-       var range = criticsRating.rangeOfString("Fresh") as NSRange
+        var range = criticsRating.rangeOfString("Fresh") as NSRange
         var tomatoIcon: String
         if (range.location != NSNotFound) {
             tomatoIcon = "freshTomato.png"
         } else {
             tomatoIcon = "splashTomato.png"
         }
-        
+
         cell.posterView.setImageWithURL(NSURL(string: posterUrl))
-        //cell.posterView.setImageWithURL(NSURL(string: posterUrl))
         cell.tomatoIconView.image = UIImage(named: tomatoIcon)
         cell.rottenScoreLabel.text = "\(criticsScore)%"
         cell.ratingLabel.text = movie["mpaa_rating"] as? String
 
+        // I want to hide the search bar when the user is trying to scroll up, but show the search 
+        // bar when the user is trying to scroll down. I can potentially figure that out by 
+        // checking what was requested last. Based on that I can figure out if the user is 
+        // scrolling up or down.
+        if (indexPath.row > lastIndexRowRequestedForTableView) {
+            if (isPreviousDirectionscrollUp) {
+                scrollDirectionChanged = false
+            } else {
+                scrollDirectionChanged = true
+            }
+            isPreviousDirectionscrollUp = true;
+        } else {
+            if (isPreviousDirectionscrollUp) {
+                scrollDirectionChanged = true
+            } else {
+                scrollDirectionChanged = false
+            }
+            isPreviousDirectionscrollUp = false
+        }
+
+        if (isPreviousDirectionscrollUp && scrollDirectionChanged) {
+            // User is scrolling down, and hence animate to hide the search bar
+            UIView.animateWithDuration(0.4, animations: {
+                // Move the search bar up by its height, and hide it
+                var moviesSearchBarFrame = self.moviesSearchBar.frame
+                moviesSearchBarFrame.origin.y -= moviesSearchBarFrame.height
+                self.moviesSearchBar.frame = moviesSearchBarFrame
+                self.moviesSearchBar.alpha = 0.0
+                self.searchBarHidden = true;
+
+                // Increase the size of the table view
+                var moviesTableViewFrame = self.tableView.frame
+                moviesTableViewFrame.origin.y -= moviesSearchBarFrame.height
+                
+                var bound = CGRectMake(0, moviesTableViewFrame.origin.y, moviesTableViewFrame.width, moviesTableViewFrame.height + moviesSearchBarFrame.height)
+                self.tableView.frame = bound
+            })
+        } else if (!isPreviousDirectionscrollUp && scrollDirectionChanged){
+            // User is scrolling up, its a swipe down, and hence animate to show the search bar
+            UIView.animateWithDuration(0.4, animations: {
+                // Move the search bar down by its height, and show it
+                var moviesSearchBarFrame = self.moviesSearchBar.frame
+                moviesSearchBarFrame.origin.y += moviesSearchBarFrame.height
+                self.moviesSearchBar.frame = moviesSearchBarFrame
+                self.moviesSearchBar.alpha = 1.0
+                self.searchBarHidden = false;
+                
+                // Reduce the size of the table view
+                var moviesTableViewFrame = self.tableView.frame
+                moviesTableViewFrame.origin.y += moviesSearchBarFrame.height
+                
+                var bound = CGRectMake(0, moviesTableViewFrame.origin.y, moviesTableViewFrame.width, moviesTableViewFrame.height - moviesSearchBarFrame.height)
+                self.tableView.frame = bound
+            })
+        }
+        lastIndexRowRequestedForTableView = indexPath.row
+        if (indexPath.row == 4 && doThisOnceFlag) {
+            println("heyhey")
+            lastIndexRowRequestedForTableView = 0
+            isPreviousDirectionscrollUp = false
+            doThisOnceFlag = false
+        }
         return cell
     }
 
