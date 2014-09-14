@@ -17,6 +17,7 @@ class MovieNavigationBarViewController: UINavigationController {
 //        self.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationBar.barStyle = UIBarStyle.BlackTranslucent
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)]
+        self.navigationBar.tintColor = UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {

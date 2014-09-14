@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var synopsisLabel: UILabel!
     @IBOutlet weak var tomatoScoreLabel: UILabel!
+    @IBOutlet var imageTapGestureRecognizer: UITapGestureRecognizer!
     var movie: NSDictionary?
     
     var movieDetailViewTrayOpen = false
@@ -67,11 +68,14 @@ class MovieDetailViewController: UIViewController {
         movieTitleTapRecognizer.addTarget(self, action: "tappedMovieTitleView")
         swipeUpGestureRecognizer.addTarget(self, action: "tappedMovieTitleView")
         swipeDownGestureRecognizer.addTarget(self, action: "tappedMovieTitleView")
+        imageTapGestureRecognizer.addTarget(self, action: "tappedMovieImageView")
         
-        NSLog("hey hey \(movieTitle!)")
-        self.navigationController!.navigationItem.title = "hey hey"
+        self.navigationItem.title = movieTitle
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)]
-        
+    }
+
+    func tappedMovieImageView() {
+        NSLog("tapped movie image")
     }
 
     func tappedMovieTitleView() {

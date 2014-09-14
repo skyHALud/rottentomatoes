@@ -13,6 +13,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var moviesSearchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet var swipeUpGestureRecognizer: UISwipeGestureRecognizer!
+
     var movies: [NSDictionary] = []
     var lastIndexRowRequestedForTableView = -1
     var searchBarHidden = false;
@@ -39,7 +41,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
             self.tableView.reloadData()
         }
-//        swipeGestureRecognizer.addTarget(tableView, action: handleSwipeEvent)
+        swipeUpGestureRecognizer.addTarget(self, action: "swipeUpGestureHandler")
+    }
+
+    func swipeUpGestureHandler() {
+        NSLog("Swipe up")
     }
 
     override func didReceiveMemoryWarning() {

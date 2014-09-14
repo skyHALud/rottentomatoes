@@ -25,6 +25,7 @@
                                 <rect key="frame" x="0.0" y="108" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,6 +90,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="QnA-HZ-Vlo" appends="YES" id="vXK-Oa-8Qy"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,10 +102,12 @@
                     <navigationItem key="navigationItem" title="Movies" id="cgA-WH-RhT"/>
                     <connections>
                         <outlet property="moviesSearchBar" destination="Hff-QG-jmh" id="5LS-Bq-3rb"/>
+                        <outlet property="swipeUpGestureRecognizer" destination="QnA-HZ-Vlo" id="4hc-Ja-8TL"/>
                         <outlet property="tableView" destination="QaK-KD-Igk" id="xUC-uz-8Dj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="QnA-HZ-Vlo"/>
             </objects>
             <point key="canvasLocation" x="801" y="501"/>
         </scene>
@@ -116,6 +122,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="kfg-eY-4eI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="DMd-Ec-7Og" appends="YES" id="g3l-Qt-kSC"/>
+                                </connections>
                             </imageView>
                             <view alpha="0.89999999999999991" contentMode="scaleToFill" id="7jW-y7-Xjc">
                                 <rect key="frame" x="0.0" y="341" width="320" height="591"/>
@@ -173,6 +183,7 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="imageTapGestureRecognizer" destination="DMd-Ec-7Og" id="Mss-xg-oAB"/>
                         <outlet property="movieDetailView" destination="7jW-y7-Xjc" id="jzw-tq-Eba"/>
                         <outlet property="movieTitleLabel" destination="GN1-hU-I9x" id="Ior-n4-Dol"/>
                         <outlet property="movieTitleTapRecognizer" destination="VUh-qr-k2h" id="zsd-Pn-iLj"/>
@@ -188,6 +199,7 @@
                 <tapGestureRecognizer id="VUh-qr-k2h"/>
                 <swipeGestureRecognizer direction="up" id="uZ3-rX-zj9"/>
                 <swipeGestureRecognizer direction="down" id="khE-0f-nyD"/>
+                <tapGestureRecognizer id="DMd-Ec-7Og"/>
             </objects>
             <point key="canvasLocation" x="1362" y="243"/>
         </scene>
