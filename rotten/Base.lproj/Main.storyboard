@@ -85,7 +85,7 @@
                                             <outlet property="synopsisLabel" destination="iyV-ya-F9l" id="EC1-cr-lq5"/>
                                             <outlet property="titleLabel" destination="TDB-ct-ZWj" id="grO-zY-7Zl"/>
                                             <outlet property="tomatoIconView" destination="hwt-HR-WiL" id="9AS-Sm-Zid"/>
-                                            <segue destination="1E6-jo-Gts" kind="custom" id="Jtt-Tn-Lmx"/>
+                                            <segue destination="1E6-jo-Gts" kind="custom" identifier="toMovieDetail" id="Jtt-Tn-Lmx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -118,7 +118,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.84999999999999987" contentMode="scaleToFill" id="7jW-y7-Xjc">
-                                <rect key="frame" x="0.0" y="277" width="320" height="471"/>
+                                <rect key="frame" x="0.0" y="356" width="320" height="471"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="TmG-ai-Nzb">
@@ -126,7 +126,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rio 2 (2014)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GN1-hU-I9x">
-                                                <rect key="frame" x="19" y="8" width="77" height="21"/>
+                                                <rect key="frame" x="19" y="8" width="293" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -164,7 +164,11 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="movieTitleLabel" destination="GN1-hU-I9x" id="Ior-n4-Dol"/>
                         <outlet property="posterImageView" destination="kfg-eY-4eI" id="nfQ-Ay-0yU"/>
+                        <outlet property="ratingLabel" destination="gbM-MK-9e7" id="JaH-v5-IDQ"/>
+                        <outlet property="synopsisLabel" destination="D3E-FI-eJK" id="JHY-Y9-QpE"/>
+                        <outlet property="tomatoScoreLabel" destination="iIm-kM-a8Y" id="QEa-9k-2sH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wg2-1U-fsU" userLabel="First Responder" sceneMemberID="firstResponder"/>

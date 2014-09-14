@@ -10,14 +10,23 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var synopsisLabel: UILabel!
+    @IBOutlet weak var tomatoScoreLabel: UILabel!
+    var movie: NSDictionary?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         posterImageView.setImageWithURL(NSURL(string: "http://content7.flixster.com/movie/11/17/88/11178889_tmb.jpg"))
         posterImageView.setImageWithURL(NSURL(string: "http://content7.flixster.com/movie/11/17/88/11178889_ptr.jpg"))
 
-        var request = NSURLRequest(URL: NSURL(string: "http://content7.flixster.com/movie/11/17/88/11178889_tmb.jpg"))
+//        var request = NSURLRequest(URL: NSURL(string: "http://content7.flixster.com/movie/11/17/88/11178889_tmb.jpg"))
 
 //        var cachedThumbnail = AFImageCache.cachedImageForRequest(request)
 //        posterImageView.setImageWithURL(NSURL(string: "http://content7.flixster.com/movie/11/17/88/11178889_ptr.jpg"), cachedThumbnail)
@@ -29,6 +38,15 @@ class MovieDetailViewController: UIViewController {
 
 //        AFImageCache.cachedImageForRequest(request)
         // Do any additional setup after loading the view.
+        
+        movieTitleLabel.text = self.movie!["title"] as? String
+        ratingLabel.text = self.movie!["mpaa_rating"] as? String
+        synopsisLabel.text = self.movie!["synopsis"] as? String
+        var ratings = movie!["ratings"] as NSDictionary
+        var criticsScore = ratings["critics_score"] as NSInteger
+        var audienceScore = ratings["audience_score"] as NSInteger
+        tomatoScoreLabel.text = "Critics Score: \(criticsScore) Audience Score: \(audienceScore)"
+        
     }
 
     override func didReceiveMemoryWarning() {

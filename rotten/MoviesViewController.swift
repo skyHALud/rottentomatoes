@@ -55,6 +55,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return movies.count;
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var movieDetailViewController: MovieDetailViewController = segue.destinationViewController as MovieDetailViewController
+        var movieIndex = tableView.indexPathForSelectedRow()!.row
+        var selectedMovie = self.movies[movieIndex]
+        movieDetailViewController.movie = selectedMovie
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println("Hello I am at row \(indexPath.row) and section \(indexPath.section)")
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell") as MovieCell
