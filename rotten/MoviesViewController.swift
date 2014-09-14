@@ -39,6 +39,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
             self.tableView.reloadData()
         }
+//        swipeGestureRecognizer.addTarget(tableView, action: handleSwipeEvent)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +47,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    func handleSwipeEvent(gesture: UISwipeGestureRecognizer) {
+        
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count;
     }
@@ -76,6 +81,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.rottenScoreLabel.text = "\(criticsScore)%"
         cell.ratingLabel.text = movie["mpaa_rating"] as? String
 
+        /*
         if (lastIndexRowRequestedForTableView == 0 && indexPath.row == 4) {
             return cell
         }
@@ -140,7 +146,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             lastIndexRowRequestedForTableView = 0
             isPreviousDirectionscrollUp = false
             doThisOnceFlag = false
-        }
+        }*/
         return cell
     }
 

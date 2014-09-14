@@ -14,7 +14,7 @@ class MovieNavigationBarViewController: UINavigationController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationBar.barTintColor = UIColor.blackColor()
+//        self.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationBar.barStyle = UIBarStyle.BlackTranslucent
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)]
     }

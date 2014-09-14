@@ -17,6 +17,7 @@
 		FDABB69919C14841000A9170 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDABB69719C14841000A9170 /* Main.storyboard */; };
 		FDABB69B19C14841000A9170 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDABB69A19C14841000A9170 /* Images.xcassets */; };
 		FDABB6A719C14841000A9170 /* rottenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDABB6A619C14841000A9170 /* rottenTests.swift */; };
+		FDC619BA19C4FE0B009A406A /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		FDABB6A019C14841000A9170 /* rottenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rottenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDABB6A519C14841000A9170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDABB6A619C14841000A9170 /* rottenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rottenTests.swift; sourceTree = "<group>"; };
+		FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				FD2A2A7019C2BA2D00B430F5 /* MoviesViewController.swift */,
 				FD2A2A7419C2CECA00B430F5 /* rotten-Bridging-Header.h */,
 				FD2A2A7719C2D89F00B430F5 /* MovieNavigationBarViewController.swift */,
+				FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */,
 			);
 			path = rotten;
 			sourceTree = "<group>";
@@ -196,9 +199,11 @@
 				TargetAttributes = {
 					FDABB68D19C14841000A9170 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 2H7687582U;
 					};
 					FDABB69F19C14841000A9170 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 2H7687582U;
 						TestTargetID = FDABB68D19C14841000A9170;
 					};
 				};
@@ -282,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDABB69419C14841000A9170 /* AppDelegate.swift in Sources */,
+				FDC619BA19C4FE0B009A406A /* MovieDetailViewController.swift in Sources */,
 				FD2A2A7819C2D89F00B430F5 /* MovieNavigationBarViewController.swift in Sources */,
 				FD2A2A7119C2BA2D00B430F5 /* MoviesViewController.swift in Sources */,
 				FD2A2A7319C2C22700B430F5 /* MovieCell.swift in Sources */,
@@ -403,6 +409,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = rotten/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "rotten/rotten-Bridging-Header.h";
@@ -418,6 +425,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = rotten/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "rotten/rotten-Bridging-Header.h";
@@ -428,6 +436,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -439,6 +449,7 @@
 				INFOPLIST_FILE = rottenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rotten.app/rotten";
 			};
 			name = Debug;
@@ -447,6 +458,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -454,6 +467,7 @@
 				INFOPLIST_FILE = rottenTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rotten.app/rotten";
 			};
 			name = Release;
