@@ -17,6 +17,7 @@
 		FDABB69919C14841000A9170 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDABB69719C14841000A9170 /* Main.storyboard */; };
 		FDABB69B19C14841000A9170 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDABB69A19C14841000A9170 /* Images.xcassets */; };
 		FDABB6A719C14841000A9170 /* rottenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDABB6A619C14841000A9170 /* rottenTests.swift */; };
+		FDB32C9B19C59138003E8AE6 /* CustomRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB32C9A19C59138003E8AE6 /* CustomRefreshControl.swift */; };
 		FDC619BA19C4FE0B009A406A /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		FDABB6A019C14841000A9170 /* rottenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rottenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDABB6A519C14841000A9170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDABB6A619C14841000A9170 /* rottenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rottenTests.swift; sourceTree = "<group>"; };
+		FDB32C9A19C59138003E8AE6 /* CustomRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRefreshControl.swift; sourceTree = "<group>"; };
 		FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				FD2A2A7419C2CECA00B430F5 /* rotten-Bridging-Header.h */,
 				FD2A2A7719C2D89F00B430F5 /* MovieNavigationBarViewController.swift */,
 				FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */,
+				FDB32C9A19C59138003E8AE6 /* CustomRefreshControl.swift */,
 			);
 			path = rotten;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				FDC619BA19C4FE0B009A406A /* MovieDetailViewController.swift in Sources */,
 				FD2A2A7819C2D89F00B430F5 /* MovieNavigationBarViewController.swift in Sources */,
 				FD2A2A7119C2BA2D00B430F5 /* MoviesViewController.swift in Sources */,
+				FDB32C9B19C59138003E8AE6 /* CustomRefreshControl.swift in Sources */,
 				FD2A2A7319C2C22700B430F5 /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

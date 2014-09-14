@@ -22,7 +22,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="22" sectionFooterHeight="22" id="QaK-KD-Igk">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -90,9 +90,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="QnA-HZ-Vlo" appends="YES" id="vXK-Oa-8Qy"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,12 +99,10 @@
                     <navigationItem key="navigationItem" title="Movies" id="cgA-WH-RhT"/>
                     <connections>
                         <outlet property="moviesSearchBar" destination="Hff-QG-jmh" id="5LS-Bq-3rb"/>
-                        <outlet property="swipeUpGestureRecognizer" destination="QnA-HZ-Vlo" id="4hc-Ja-8TL"/>
                         <outlet property="tableView" destination="QaK-KD-Igk" id="xUC-uz-8Dj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="QnA-HZ-Vlo"/>
             </objects>
             <point key="canvasLocation" x="801" y="501"/>
         </scene>
