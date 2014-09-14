@@ -26,6 +26,10 @@ class MovieDetailViewController: UIViewController {
     var movieDetailViewOriginalPosition = 0
 
     @IBOutlet var movieTitleTapRecognizer: UITapGestureRecognizer!
+    @IBOutlet var swipeUpGestureRecognizer: UISwipeGestureRecognizer!
+
+    @IBOutlet var swipeDownGestureRecognizer: UISwipeGestureRecognizer!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +54,8 @@ class MovieDetailViewController: UIViewController {
         
         posterImageView.setImageWithURL(NSURL(string: originalUrl))
 
-        movieTitleLabel.text = self.movie!["title"] as? String
+        var movieTitle = self.movie!["title"] as? String
+        movieTitleLabel.text = movieTitle
         ratingLabel.text = self.movie!["mpaa_rating"] as? String
         synopsisLabel.text = self.movie!["synopsis"] as? String
         synopsisLabel.numberOfLines = 0
@@ -60,6 +65,12 @@ class MovieDetailViewController: UIViewController {
         var audienceScore = ratings["audience_score"] as NSInteger
         tomatoScoreLabel.text = "Critics Score: \(criticsScore) Audience Score: \(audienceScore)"
         movieTitleTapRecognizer.addTarget(self, action: "tappedMovieTitleView")
+        swipeUpGestureRecognizer.addTarget(self, action: "tappedMovieTitleView")
+        swipeDownGestureRecognizer.addTarget(self, action: "tappedMovieTitleView")
+        
+        NSLog("hey hey \(movieTitle!)")
+        self.navigationController!.navigationItem.title = "hey hey"
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)]
         
     }
 

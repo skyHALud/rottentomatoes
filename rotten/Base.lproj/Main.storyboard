@@ -117,7 +117,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view alpha="0.84999999999999987" contentMode="scaleToFill" id="7jW-y7-Xjc">
+                            <view alpha="0.89999999999999991" contentMode="scaleToFill" id="7jW-y7-Xjc">
                                 <rect key="frame" x="0.0" y="341" width="320" height="591"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -163,6 +163,11 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="uZ3-rX-zj9" appends="YES" id="KQN-kj-BGB"/>
+                                    <outletCollection property="gestureRecognizers" destination="khE-0f-nyD" appends="YES" id="G7x-h8-Ro0"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -173,14 +178,18 @@
                         <outlet property="movieTitleTapRecognizer" destination="VUh-qr-k2h" id="zsd-Pn-iLj"/>
                         <outlet property="posterImageView" destination="kfg-eY-4eI" id="nfQ-Ay-0yU"/>
                         <outlet property="ratingLabel" destination="gbM-MK-9e7" id="JaH-v5-IDQ"/>
+                        <outlet property="swipeDownGestureRecognizer" destination="khE-0f-nyD" id="unB-MK-x2U"/>
+                        <outlet property="swipeUpGestureRecognizer" destination="uZ3-rX-zj9" id="9sW-lM-d5u"/>
                         <outlet property="synopsisLabel" destination="D3E-FI-eJK" id="JHY-Y9-QpE"/>
                         <outlet property="tomatoScoreLabel" destination="iIm-kM-a8Y" id="QEa-9k-2sH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wg2-1U-fsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="VUh-qr-k2h"/>
+                <swipeGestureRecognizer direction="up" id="uZ3-rX-zj9"/>
+                <swipeGestureRecognizer direction="down" id="khE-0f-nyD"/>
             </objects>
-            <point key="canvasLocation" x="1224" y="501"/>
+            <point key="canvasLocation" x="1362" y="243"/>
         </scene>
         <!--Movie Navigation Bar View Controller-->
         <scene sceneID="tyS-1X-j0a">
