@@ -118,7 +118,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.84999999999999987" contentMode="scaleToFill" id="7jW-y7-Xjc">
-                                <rect key="frame" x="0.0" y="356" width="320" height="471"/>
+                                <rect key="frame" x="0.0" y="341" width="320" height="591"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="TmG-ai-Nzb">
@@ -148,9 +148,13 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="VUh-qr-k2h" appends="YES" id="vtL-ju-H3p"/>
+                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the movie synopsis" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D3E-FI-eJK">
-                                        <rect key="frame" x="16" y="75" width="289" height="81"/>
+                                        <rect key="frame" x="16" y="75" width="291" height="389"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -164,7 +168,9 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="movieDetailView" destination="7jW-y7-Xjc" id="jzw-tq-Eba"/>
                         <outlet property="movieTitleLabel" destination="GN1-hU-I9x" id="Ior-n4-Dol"/>
+                        <outlet property="movieTitleTapRecognizer" destination="VUh-qr-k2h" id="zsd-Pn-iLj"/>
                         <outlet property="posterImageView" destination="kfg-eY-4eI" id="nfQ-Ay-0yU"/>
                         <outlet property="ratingLabel" destination="gbM-MK-9e7" id="JaH-v5-IDQ"/>
                         <outlet property="synopsisLabel" destination="D3E-FI-eJK" id="JHY-Y9-QpE"/>
@@ -172,6 +178,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wg2-1U-fsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VUh-qr-k2h"/>
             </objects>
             <point key="canvasLocation" x="1224" y="501"/>
         </scene>
