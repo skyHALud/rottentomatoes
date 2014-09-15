@@ -25,7 +25,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var scrollDirectionChanged = false;
     var doThisOnceFlag = true;
     var refreshControl:UIRefreshControl!
-//    var loadingOverlayViewController:LoadingOverlayViewController = LoadingOverlayViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,25 +32,19 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         
         // Show the loading screen here.
-        // FCOverlay.presentOverlayWithViewController(self.loadingOverlayViewController, windowLevel: UIWindowLevelAlert, animated: false, completion: nil)
-
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), {
             self.loadMovies(false)
-            
             dispatch_async(dispatch_get_main_queue(), {
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
                 return
             })
         })
-            
-        
+
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl)
-
-        // self.loadingOverlayViewController.transitioningDelegate = self.transitioningDelegate;
     }
     
     func loadMovies(isRefreshing: Bool) {
@@ -100,6 +93,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var movieDetailViewController: MovieDetailViewController = segue.destinationViewController as MovieDetailViewController
         var movieIndex = tableView.indexPathForSelectedRow()!.row
+        self.tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: false)
         var selectedMovie = self.movies[movieIndex]
         movieDetailViewController.movie = selectedMovie
         self.view.endEditing(true);
@@ -143,6 +137,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             NSLog("Did Scroll down");
             // react to dragging down
             if self.searchBarHidden {
+                self.searchBarHidden = false;
                 UIView.animateWithDuration(0.4, animations: {
                     // Move the search bar up by its height, and hide it
                     var moviesSearchBarFrame = self.moviesSearchBar.frame
@@ -154,7 +149,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     var moviesTableViewFrame = self.tableView.frame
                     moviesTableViewFrame.origin.y += moviesSearchBarFrame.height
                     self.tableView.frame = moviesTableViewFrame
-                    self.searchBarHidden = false;
                 })
             }
         } else {
@@ -162,6 +156,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             // react to dragging up
             // User is scrolling down, and hence animate to hide the search bar
             if !self.searchBarHidden {
+                self.searchBarHidden = true;
                 UIView.animateWithDuration(0.4, animations: {
                     // Move the search bar up by its height, and hide it
                     var moviesSearchBarFrame = self.moviesSearchBar.frame
@@ -173,7 +168,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     var moviesTableViewFrame = self.tableView.frame
                     moviesTableViewFrame.origin.y -= moviesSearchBarFrame.height
                     self.tableView.frame = moviesTableViewFrame
-                    self.searchBarHidden = true;
                 })
             }
         }
