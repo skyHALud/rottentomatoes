@@ -24,6 +24,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var scrollDirectionChanged = false;
     var doThisOnceFlag = true;
     var refreshControl:UIRefreshControl!
+//    var loadingOverlayViewController:LoadingOverlayViewController = LoadingOverlayViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +32,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         
         // Show the loading screen here.
+        // FCOverlay.presentOverlayWithViewController(self.loadingOverlayViewController, windowLevel: UIWindowLevelAlert, animated: false, completion: nil)
 
-        loadMovies(false)
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), {
+            self.loadMovies(false)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                return
+            })
+        })
+            
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
+        self.tableView.addSubview(self.refreshControl)
+
+        // self.loadingOverlayViewController.transitioningDelegate = self.transitioningDelegate;
     }
     
     func loadMovies(isRefreshing: Bool) {
@@ -50,6 +64,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if (isRefreshing) {
                 self.refreshControl.endRefreshing()
             }
+//            self.loadingOverlayViewController.closeOverlay()
         }
 
     }

@@ -13,6 +13,8 @@
 		FD2A2A7819C2D89F00B430F5 /* MovieNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2A2A7719C2D89F00B430F5 /* MovieNavigationBarViewController.swift */; };
 		FD2A2A7A19C2FD1000B430F5 /* splashTomato.png in Resources */ = {isa = PBXBuildFile; fileRef = FD2A2A7919C2FD1000B430F5 /* splashTomato.png */; };
 		FD2A2A7C19C2FD1700B430F5 /* freshTomato.png in Resources */ = {isa = PBXBuildFile; fileRef = FD2A2A7B19C2FD1700B430F5 /* freshTomato.png */; };
+		FD69304419C62F0B0017D4FD /* LoadingOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD69304319C62F0B0017D4FD /* LoadingOverlayViewController.swift */; };
+		FD92CC3619C645300091A4DF /* freshTomatoSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = FD92CC3519C645300091A4DF /* freshTomatoSmall.png */; };
 		FDABB69419C14841000A9170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDABB69319C14841000A9170 /* AppDelegate.swift */; };
 		FDABB69919C14841000A9170 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDABB69719C14841000A9170 /* Main.storyboard */; };
 		FDABB69B19C14841000A9170 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDABB69A19C14841000A9170 /* Images.xcassets */; };
@@ -40,6 +42,8 @@
 		FD2A2A7719C2D89F00B430F5 /* MovieNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieNavigationBarViewController.swift; sourceTree = "<group>"; };
 		FD2A2A7919C2FD1000B430F5 /* splashTomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashTomato.png; sourceTree = "<group>"; };
 		FD2A2A7B19C2FD1700B430F5 /* freshTomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freshTomato.png; sourceTree = "<group>"; };
+		FD69304319C62F0B0017D4FD /* LoadingOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlayViewController.swift; sourceTree = "<group>"; };
+		FD92CC3519C645300091A4DF /* freshTomatoSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freshTomatoSmall.png; sourceTree = "<group>"; };
 		FDABB68E19C14841000A9170 /* rotten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rotten.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDABB69219C14841000A9170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDABB69319C14841000A9170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 		FD2A2A7D19C2FD2000B430F5 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				FD92CC3519C645300091A4DF /* freshTomatoSmall.png */,
 				FD2A2A7919C2FD1000B430F5 /* splashTomato.png */,
 				FD2A2A7B19C2FD1700B430F5 /* freshTomato.png */,
 			);
@@ -122,6 +127,7 @@
 				FD2A2A7719C2D89F00B430F5 /* MovieNavigationBarViewController.swift */,
 				FDC619B919C4FE0B009A406A /* MovieDetailViewController.swift */,
 				FDB32C9A19C59138003E8AE6 /* CustomRefreshControl.swift */,
+				FD69304319C62F0B0017D4FD /* LoadingOverlayViewController.swift */,
 			);
 			path = rotten;
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD2A2A7A19C2FD1000B430F5 /* splashTomato.png in Resources */,
+				FD92CC3619C645300091A4DF /* freshTomatoSmall.png in Resources */,
 				FD2A2A7C19C2FD1700B430F5 /* freshTomato.png in Resources */,
 				FDABB69919C14841000A9170 /* Main.storyboard in Resources */,
 				FDABB69B19C14841000A9170 /* Images.xcassets in Resources */,
@@ -291,6 +298,7 @@
 			files = (
 				FDABB69419C14841000A9170 /* AppDelegate.swift in Sources */,
 				FDC619BA19C4FE0B009A406A /* MovieDetailViewController.swift in Sources */,
+				FD69304419C62F0B0017D4FD /* LoadingOverlayViewController.swift in Sources */,
 				FD2A2A7819C2D89F00B430F5 /* MovieNavigationBarViewController.swift in Sources */,
 				FD2A2A7119C2BA2D00B430F5 /* MoviesViewController.swift in Sources */,
 				FDB32C9B19C59138003E8AE6 /* CustomRefreshControl.swift in Sources */,

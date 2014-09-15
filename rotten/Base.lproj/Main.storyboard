@@ -198,6 +198,19 @@
             </objects>
             <point key="canvasLocation" x="1362" y="243"/>
         </scene>
+        <!--Loading Overlay View Controller-->
+        <scene sceneID="24s-Gh-Mzn">
+            <objects>
+                <viewController id="Pyb-uw-Wks" customClass="LoadingOverlayViewController" customModule="rotten" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VXG-7d-n6m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5mM-DL-hFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1362" y="928"/>
+        </scene>
         <!--Movie Navigation Bar View Controller-->
         <scene sceneID="tyS-1X-j0a">
             <objects>
