@@ -14,6 +14,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.init(coder: aDecoder)
     }
 
+    @IBOutlet weak var networkErrorLabel: UILabel!
     @IBOutlet weak var moviesSearchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
@@ -58,11 +59,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=axku2sndnpg2d6dhjw59wj3d&limit=20&country=us"
         var request = NSURLRequest(URL: NSURL(string: url))
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
-            self.movies = object["movies"] as [NSDictionary]
-            self.tableView.reloadData()
-            if (isRefreshing) {
-                self.refreshControl.endRefreshing()
+            if ((error) != nil) {
+                self.moviesSearchBar.hidden = true
+                self.networkErrorLabel.hidden = false
+                if (isRefreshing) {
+                    self.refreshControl.endRefreshing()
+                }
+            } else {
+                var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as NSDictionary
+                self.movies = object["movies"] as [NSDictionary]
+                self.tableView.reloadData()
+                if (isRefreshing) {
+                    self.refreshControl.endRefreshing()
+                }
+                self.moviesSearchBar.hidden = false
+                self.networkErrorLabel.hidden = true
             }
 //            self.loadingOverlayViewController.closeOverlay()
         }
