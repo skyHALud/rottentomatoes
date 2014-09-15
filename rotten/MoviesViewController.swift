@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -20,16 +20,19 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     var movies: [NSDictionary] = []
     var lastIndexRowRequestedForTableView = -1
-    var searchBarHidden = false;
+    var searchBarHidden = false
     var isPreviousDirectionscrollUp = true;
     var scrollDirectionChanged = false;
-    var doThisOnceFlag = true;
+    var doThisOnceFlag = true
     var refreshControl:UIRefreshControl!
+    var inSearchMode = false
+    var searchedMovies: [NSDictionary] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        moviesSearchBar.delegate = self
         
         // Show the loading screen here.
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -70,9 +73,32 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
 //            self.loadingOverlayViewController.closeOverlay()
         }
-
     }
-
+    
+    func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!){
+        if (searchText == "") {
+            NSLog("Empty seach text")
+            self.inSearchMode = false
+            self.tableView.reloadData()
+            return
+        }
+        self.inSearchMode = true
+        searchedMovies = []
+        for movie in self.movies {
+            var title = movie["title"] as String
+            if title.lowercaseString.rangeOfString(searchText.lowercaseString) != nil {
+                searchedMovies.append(movie)
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.inSearchMode = false
+        searchedMovies = []
+        self.tableView.reloadData()
+    }
+    
     func refresh() {
         loadMovies(true)
     }
@@ -87,6 +113,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (inSearchMode) {
+            return searchedMovies.count
+        }
         return movies.count;
     }
     
@@ -102,8 +131,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println("Hello I am at row \(indexPath.row) and section \(indexPath.section)")
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell") as MovieCell
-        
-        var movie = movies[indexPath.row]
+
+        var loadMovies = self.inSearchMode ? self.searchedMovies : self.movies
+        var movie = loadMovies[indexPath.row]
         cell.titleLabel.text = movie["title"] as? String
         cell.synopsisLabel.text = movie["synopsis"] as? String
         
