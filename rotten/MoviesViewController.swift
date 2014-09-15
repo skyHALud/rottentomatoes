@@ -19,7 +19,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
 
     var movies: [NSDictionary] = []
-    var lastIndexRowRequestedForTableView = -1
+    var newIndexRowRequestedForTableView = false
     var searchBarHidden = false
     var isPreviousDirectionscrollUp = true;
     var scrollDirectionChanged = false;
@@ -71,7 +71,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 self.moviesSearchBar.hidden = false
                 self.networkErrorLabel.hidden = true
             }
-//            self.loadingOverlayViewController.closeOverlay()
         }
     }
     
@@ -155,50 +154,50 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.rottenScoreLabel.text = "\(criticsScore)%"
         cell.ratingLabel.text = movie["mpaa_rating"] as? String
 
+        self.newIndexRowRequestedForTableView = true
         return cell
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-
-
         var translation = scrollView.panGestureRecognizer.translationInView(scrollView)
         self.view.endEditing(true);
-        if(translation.y > 0) {
-            NSLog("Did Scroll down");
-            // react to dragging down
-            if self.searchBarHidden {
-                self.searchBarHidden = false;
-                UIView.animateWithDuration(0.4, animations: {
-                    // Move the search bar up by its height, and hide it
-                    var moviesSearchBarFrame = self.moviesSearchBar.frame
-                    moviesSearchBarFrame.origin.y += moviesSearchBarFrame.height
-                    self.moviesSearchBar.frame = moviesSearchBarFrame
-                    self.moviesSearchBar.alpha = 1.0
-                    
-                    // Increase the size of the table view
-                    var moviesTableViewFrame = self.tableView.frame
-                    moviesTableViewFrame.origin.y += moviesSearchBarFrame.height
-                    self.tableView.frame = moviesTableViewFrame
-                })
-            }
-        } else {
-            NSLog("Did Scroll up");
-            // react to dragging up
-            // User is scrolling down, and hence animate to hide the search bar
-            if !self.searchBarHidden {
-                self.searchBarHidden = true;
-                UIView.animateWithDuration(0.4, animations: {
-                    // Move the search bar up by its height, and hide it
-                    var moviesSearchBarFrame = self.moviesSearchBar.frame
-                    moviesSearchBarFrame.origin.y -= moviesSearchBarFrame.height
-                    self.moviesSearchBar.frame = moviesSearchBarFrame
-                    self.moviesSearchBar.alpha = 0.0
-                    
-                    // Increase the size of the table view
-                    var moviesTableViewFrame = self.tableView.frame
-                    moviesTableViewFrame.origin.y -= moviesSearchBarFrame.height
-                    self.tableView.frame = moviesTableViewFrame
-                })
+        if (self.newIndexRowRequestedForTableView) {
+            self.newIndexRowRequestedForTableView = false
+            if(translation.y > 0) {
+                // react to dragging down
+                if self.searchBarHidden {
+                    self.searchBarHidden = false;
+                    UIView.animateWithDuration(0.4, animations: {
+                        // Move the search bar up by its height, and hide it
+                        var moviesSearchBarFrame = self.moviesSearchBar.frame
+                        moviesSearchBarFrame.origin.y += moviesSearchBarFrame.height
+                        self.moviesSearchBar.frame = moviesSearchBarFrame
+                        self.moviesSearchBar.alpha = 1.0
+                        
+                        // Increase the size of the table view
+                        var moviesTableViewFrame = self.tableView.frame
+                        moviesTableViewFrame.origin.y += moviesSearchBarFrame.height
+                        self.tableView.frame = moviesTableViewFrame
+                    })
+                }
+            } else {
+                // react to dragging up
+                // User is scrolling down, and hence animate to hide the search bar
+                if !self.searchBarHidden {
+                    self.searchBarHidden = true;
+                    UIView.animateWithDuration(0.4, animations: {
+                        // Move the search bar up by its height, and hide it
+                        var moviesSearchBarFrame = self.moviesSearchBar.frame
+                        moviesSearchBarFrame.origin.y -= moviesSearchBarFrame.height
+                        self.moviesSearchBar.frame = moviesSearchBarFrame
+                        self.moviesSearchBar.alpha = 0.0
+                        
+                        // Increase the size of the table view
+                        var moviesTableViewFrame = self.tableView.frame
+                        moviesTableViewFrame.origin.y -= moviesSearchBarFrame.height
+                        self.tableView.frame = moviesTableViewFrame
+                    })
+                }
             }
         }
     }

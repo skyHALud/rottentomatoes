@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1aa-IM-Pdf">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
@@ -67,7 +68,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PG-13" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rZU-RP-P2y">
-                                                    <rect key="frame" x="147" y="30" width="36" height="15"/>
+                                                    <rect key="frame" x="147" y="30" width="60" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -77,7 +78,7 @@
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882354378700256" green="0.25882354378700256" blue="0.25882354378700256" alpha="1" colorSpace="deviceRGB"/>
-                                        <color key="tintColor" patternImage="E97E029E-BE2A-4220-9FB2-4904E312BB79" colorSpace="pattern"/>
+                                        <color key="tintColor" patternImage="AC709F85-8A09-4EB9-9CB9-2D6D7B0481A4" colorSpace="pattern"/>
                                         <connections>
                                             <outlet property="posterView" destination="wUz-K2-oca" id="vUW-bp-hun"/>
                                             <outlet property="ratingLabel" destination="rZU-RP-P2y" id="KI4-sk-D0d"/>
@@ -124,11 +125,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="kfg-eY-4eI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="490"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="DMd-Ec-7Og" appends="YES" id="g3l-Qt-kSC"/>
+                                    <outletCollection property="gestureRecognizers" destination="RkG-K9-sCf" appends="YES" id="yl6-Dk-brt"/>
                                 </connections>
                             </imageView>
                             <view alpha="0.89999999999999991" contentMode="scaleToFill" id="7jW-y7-Xjc">
@@ -154,7 +155,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PG-13" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gbM-MK-9e7">
-                                                <rect key="frame" x="19" y="48" width="42" height="21"/>
+                                                <rect key="frame" x="19" y="48" width="70" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -187,7 +188,7 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="imageTapGestureRecognizer" destination="DMd-Ec-7Og" id="Mss-xg-oAB"/>
+                        <outlet property="imageTapGestureRecognizer" destination="RkG-K9-sCf" id="6wu-KO-5h3"/>
                         <outlet property="movieDetailView" destination="7jW-y7-Xjc" id="jzw-tq-Eba"/>
                         <outlet property="movieTitleLabel" destination="GN1-hU-I9x" id="Ior-n4-Dol"/>
                         <outlet property="movieTitleTapRecognizer" destination="VUh-qr-k2h" id="zsd-Pn-iLj"/>
@@ -203,7 +204,7 @@
                 <tapGestureRecognizer id="VUh-qr-k2h"/>
                 <swipeGestureRecognizer direction="up" id="uZ3-rX-zj9"/>
                 <swipeGestureRecognizer direction="down" id="khE-0f-nyD"/>
-                <tapGestureRecognizer id="DMd-Ec-7Og"/>
+                <tapGestureRecognizer id="RkG-K9-sCf"/>
             </objects>
             <point key="canvasLocation" x="1362" y="243"/>
         </scene>
@@ -240,7 +241,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E97E029E-BE2A-4220-9FB2-4904E312BB79" width="512" height="512">
+        <image name="AC709F85-8A09-4EB9-9CB9-2D6D7B0481A4" width="512" height="512">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGTk9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEQcI
 ExQZHh8nKzIzNDw/QkhLVSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NW
