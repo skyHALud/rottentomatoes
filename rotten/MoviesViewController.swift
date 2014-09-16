@@ -139,7 +139,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         var posters = movie["posters"] as NSDictionary
         var posterUrl = posters["thumbnail"] as String
         var ratings = movie["ratings"] as NSDictionary
-        var criticsRating = ratings["critics_rating"] as NSString
+        var criticsRating: NSString = ""
+        if ((ratings["critics_rating"]) != nil) {
+            criticsRating = ratings["critics_rating"]? as NSString
+        }
+
         var criticsScore = ratings["critics_score"] as NSInteger
         var range = criticsRating.rangeOfString("Fresh") as NSRange
         var tomatoIcon: String

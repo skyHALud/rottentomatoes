@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,14 +24,20 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet var movieTitleTapRecognizer: UITapGestureRecognizer!
     @IBOutlet var swipeUpGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var swipeDownGestureRecognizer: UISwipeGestureRecognizer!
-    
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
+
     var movie: NSDictionary?
     var movieDetailViewTrayOpen = false
     var movieDetailViewOriginalPosition = 0
     var fullPosterViewEnabled = false
+    var handlingGesture = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieTitleTapRecognizer.delegate = self
+        swipeDownGestureRecognizer.delegate = self
+        swipeUpGestureRecognizer.delegate = self
+        panGestureRecognizer.delegate = self
 
         // Set all the information about the movies
         var posters = self.movie!["posters"] as NSDictionary
@@ -60,35 +66,72 @@ class MovieDetailViewController: UIViewController {
         tomatoScoreLabel.textColor = UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)
 
         movieTitleTapRecognizer.addTarget(self, action: "tappedMovieTitleView")
-        swipeUpGestureRecognizer.addTarget(self, action: "tappedMovieTitleView")
-        swipeDownGestureRecognizer.addTarget(self, action: "tappedMovieTitleView")
+        swipeUpGestureRecognizer.addTarget(self, action: "swipeUpGesture")
+        swipeDownGestureRecognizer.addTarget(self, action: "swipeDownGesture")
         imageTapGestureRecognizer.addTarget(self, action: "tappedMovieImageView")
+        panGestureRecognizer.addTarget(self, action: "handlePanGesture")
         
         self.navigationItem.title = movieTitle
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)]
         
-        self.movieDetailViewOriginalPosition = Int(self.movieDetailView.frame.origin.y)
+        self.movieDetailViewOriginalPosition = 320
+    }
+
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    var lastPanTranslation:CGPoint!
+
+    func handlePanGesture() {
+        NSLog("Panning!!!!")
+/*        var translation: CGPoint  = panGestureRecognizer.translationInView(self.view)
+        if (lastPanTranslation == nil) {
+            lastPanTranslation = translation
+        }
+        self.handlingGesture = true
+        
+        var distance = translation.y - lastPanTranslation.y
+        lastPanTranslation = translation
+        // Translate the view's bounds, but do not permit values that would violate contentSize
+        var movieDetailViewFrame = self.movieDetailView.frame
+        var finalMovieDetailY = movieDetailViewFrame.origin.y + distance;
+        if (finalMovieDetailY < 60) {
+            movieDetailViewFrame.origin.y = 60
+        } else if (finalMovieDetailY > 490) {
+            movieDetailViewFrame.origin.y = 490
+        } else {
+            movieDetailViewFrame.origin.y = finalMovieDetailY
+        }
+        self.movieDetailView.frame = movieDetailViewFrame
+        NSLog("\(distance)")
+        // Reset the state after the gest is done
+        if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
+            self.handlingGesture = false
+            lastPanTranslation = nil
+        }*/
     }
 
     func tappedMovieImageView() {
-        if (self.fullPosterViewEnabled) {
-            self.fullPosterViewEnabled = false
-            UIView.animateWithDuration(0.5, animations: {
-                var movieDetailViewFrame = self.movieDetailView.frame
-                movieDetailViewFrame.origin.y = CGFloat(self.movieDetailViewOriginalPosition)
-                self.movieDetailView.frame = movieDetailViewFrame
-                self.navigationController?.navigationBarHidden = false
-            })
-        } else {
-            self.fullPosterViewEnabled = true
-            UIView.animateWithDuration(0.5, animations: {
-                var movieDetailViewFrame = self.movieDetailView.frame
-                movieDetailViewFrame.origin.y = 490
-                self.movieDetailView.frame = movieDetailViewFrame
-                self.navigationController?.navigationBarHidden = true
-            })
+        if (!self.handlingGesture) {
+            if (self.fullPosterViewEnabled) {
+                self.fullPosterViewEnabled = false
+                UIView.animateWithDuration(0.5, animations: {
+                    var movieDetailViewFrame = self.movieDetailView.frame
+                    movieDetailViewFrame.origin.y = CGFloat(self.movieDetailViewOriginalPosition)
+                    self.movieDetailView.frame = movieDetailViewFrame
+                    self.navigationController?.navigationBarHidden = false
+                })
+            } else {
+                self.fullPosterViewEnabled = true
+                UIView.animateWithDuration(0.5, animations: {
+                    var movieDetailViewFrame = self.movieDetailView.frame
+                    movieDetailViewFrame.origin.y = 570
+                    self.movieDetailView.frame = movieDetailViewFrame
+                    self.navigationController?.navigationBarHidden = true
+                })
+            }
         }
-
     }
 
     func tappedMovieTitleView() {
@@ -106,6 +149,34 @@ class MovieDetailViewController: UIViewController {
             self.movieDetailView.frame = movieDetailViewFrame
         })
     }
+    
+    func swipeUpGesture() {
+            UIView.animateWithDuration(0.5, animations: {
+                self.navigationController?.navigationBarHidden = false
+                // Move the search bar up by its height, and hide it
+                var movieDetailViewFrame = self.movieDetailView.frame
+                movieDetailViewFrame.origin.y = 60
+                self.movieDetailViewTrayOpen = true
+                self.movieDetailView.frame = movieDetailViewFrame
+            })
+    }
+    
+    func swipeDownGesture() {
+        if (self.movieDetailViewTrayOpen) {
+            UIView.animateWithDuration(0.5, animations: {
+                self.navigationController?.navigationBarHidden = false
+                // Move the search bar up by its height, and hide it
+                var movieDetailViewFrame = self.movieDetailView.frame
+                movieDetailViewFrame.origin.y = CGFloat(self.movieDetailViewOriginalPosition)
+                self.movieDetailViewTrayOpen = false
+                self.movieDetailView.frame = movieDetailViewFrame
+            })
+        } else {
+            // Go into full screen mode for poster
+            tappedMovieImageView()
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

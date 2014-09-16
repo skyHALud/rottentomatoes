@@ -78,7 +78,7 @@
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882354378700256" green="0.25882354378700256" blue="0.25882354378700256" alpha="1" colorSpace="deviceRGB"/>
-                                        <color key="tintColor" patternImage="AC709F85-8A09-4EB9-9CB9-2D6D7B0481A4" colorSpace="pattern"/>
+                                        <color key="tintColor" patternImage="2E2D19FA-EAF2-4F33-9CD9-27B00045AB46" colorSpace="pattern"/>
                                         <connections>
                                             <outlet property="posterView" destination="wUz-K2-oca" id="vUW-bp-hun"/>
                                             <outlet property="ratingLabel" destination="rZU-RP-P2y" id="KI4-sk-D0d"/>
@@ -125,15 +125,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="kfg-eY-4eI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="490"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="RkG-K9-sCf" appends="YES" id="yl6-Dk-brt"/>
+                                    <outletCollection property="gestureRecognizers" destination="RkG-K9-sCf" appends="YES" id="HTb-gp-Rqe"/>
                                 </connections>
                             </imageView>
                             <view alpha="0.89999999999999991" contentMode="scaleToFill" id="7jW-y7-Xjc">
-                                <rect key="frame" x="0.0" y="341" width="320" height="591"/>
+                                <rect key="frame" x="0.0" y="320" width="320" height="591"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="TmG-ai-Nzb">
@@ -182,16 +182,18 @@
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="uZ3-rX-zj9" appends="YES" id="KQN-kj-BGB"/>
                                     <outletCollection property="gestureRecognizers" destination="khE-0f-nyD" appends="YES" id="G7x-h8-Ro0"/>
+                                    <outletCollection property="gestureRecognizers" destination="gyY-Hr-hZi" appends="YES" id="S3j-D9-SPJ"/>
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="imageTapGestureRecognizer" destination="RkG-K9-sCf" id="6wu-KO-5h3"/>
                         <outlet property="movieDetailView" destination="7jW-y7-Xjc" id="jzw-tq-Eba"/>
                         <outlet property="movieTitleLabel" destination="GN1-hU-I9x" id="Ior-n4-Dol"/>
                         <outlet property="movieTitleTapRecognizer" destination="VUh-qr-k2h" id="zsd-Pn-iLj"/>
+                        <outlet property="panGestureRecognizer" destination="gyY-Hr-hZi" id="ULl-au-UJL"/>
                         <outlet property="posterImageView" destination="kfg-eY-4eI" id="nfQ-Ay-0yU"/>
                         <outlet property="ratingLabel" destination="gbM-MK-9e7" id="JaH-v5-IDQ"/>
                         <outlet property="swipeDownGestureRecognizer" destination="khE-0f-nyD" id="unB-MK-x2U"/>
@@ -205,6 +207,7 @@
                 <swipeGestureRecognizer direction="up" id="uZ3-rX-zj9"/>
                 <swipeGestureRecognizer direction="down" id="khE-0f-nyD"/>
                 <tapGestureRecognizer id="RkG-K9-sCf"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="gyY-Hr-hZi"/>
             </objects>
             <point key="canvasLocation" x="1362" y="243"/>
         </scene>
@@ -241,7 +244,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AC709F85-8A09-4EB9-9CB9-2D6D7B0481A4" width="512" height="512">
+        <image name="2E2D19FA-EAF2-4F33-9CD9-27B00045AB46" width="512" height="512">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGTk9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEQcI
 ExQZHh8nKzIzNDw/QkhLVSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NW
@@ -17782,8 +17785,8 @@ tc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp22vvbgNwF3Ird
 EN2W3hzeot8p36/gNuC94UThzOJT4tvjY+Pr5HPk/OWE5g3mlucf56noMui86Ubp0Opb6uXrcOv77Ibt
 Ee2c7ijutO9A78zwWPDl8XLx//KM8xnzp/Q09ML1UPXe9m32+/eK+Bn4qPk4+cf6V/rn+3f8B/yY/Sn9
 uv5L/tz/bf//gAjSLC0uL1okY2xhc3NuYW1lWCRjbGFzc2VzXU5TTXV0YWJsZURhdGGjLjAxVk5TRGF0
-YVhOU09iamVjdF8QMHt7MCwgMH0sIHsxODAxNDM5ODUwOTQ4MTk4NCwgMTgwMTQzOTg1MDk0ODE5ODR9
-fV8QMHt7MCwgMH0sIHsxODAxNDM5ODUwOTQ4MTk4NCwgMTgwMTQzOTg1MDk0ODE5ODR9fdMsLTU2Nzpb
+YVhOU09iamVjdF8QMHt7MCwgMH0sIHszNjAyODc5NzAxODk2Mzk2OCwgMzYwMjg3OTcwMTg5NjM5Njh9
+fV8QMHt7MCwgMH0sIHszNjAyODc5NzAxODk2Mzk2OCwgMzYwMjg3OTcwMTg5NjM5Njh9fdMsLTU2Nzpb
 JGNsYXNzaGludHNfEBROU0NHSW1hZ2VTbmFwc2hvdFJlcKM4OTFfEBROU0NHSW1hZ2VTbmFwc2hvdFJl
 cFpOU0ltYWdlUmVwoTtfEBBOU0NhY2hlZEltYWdlUmVw0iwtPT5XTlNBcnJheaI9MdIsLUBBXk5TTXV0
 YWJsZUFycmF5o0A9MdNDRApFRkdXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgA/SLC1JSldOU0Nv
