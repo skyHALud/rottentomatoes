@@ -45,7 +45,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         })
 
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
+        var attributedString = NSMutableAttributedString(string: "Pull down to refersh")
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayColor(), range: NSMakeRange(0, attributedString.length))
+        self.refreshControl.attributedTitle = attributedString
+        self.refreshControl.tintColor = UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl)
     }
@@ -73,6 +76,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    
+    
     
     func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!){
         if (searchText == "") {
