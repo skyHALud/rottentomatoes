@@ -227,6 +227,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         var moviesTableViewFrame = self.tableView.frame
                         moviesTableViewFrame.origin.y += moviesSearchBarFrame.height
                         self.tableView.frame = moviesTableViewFrame
+                        
+                        // Show the tabbar
+                        var tabBarFrame = self.tabBar.frame
+                        tabBarFrame.origin.y -= tabBarFrame.height
+                        self.tabBar.frame = tabBarFrame
                         self.tabBar.alpha = 1.0
                     })
                 }
@@ -246,6 +251,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         var moviesTableViewFrame = self.tableView.frame
                         moviesTableViewFrame.origin.y -= moviesSearchBarFrame.height
                         self.tableView.frame = moviesTableViewFrame
+                        
+                        var tabBarFrame = self.tabBar.frame
+                        tabBarFrame.origin.y += tabBarFrame.height
+                        self.tabBar.frame = tabBarFrame
                         self.tabBar.alpha = 0.0
                     })
                 }
