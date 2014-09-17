@@ -98,14 +98,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             return
         }
         self.inSearchMode = true
-/*        searchedMovies = []
-        for movie in self.movies {
-            var title = movie["title"] as String
-            if title.lowercaseString.rangeOfString(searchText.lowercaseString) != nil {
-                searchedMovies.append(movie)
-            }
-        }
-        self.tableView.reloadData()*/
+
         searchMovies(searchText)
         NSLog(searchText)
     }
@@ -114,6 +107,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.inSearchMode = false
         searchedMovies = []
         self.tableView.reloadData()
+        self.view.endEditing(true);
     }
     
     func refresh() {
@@ -122,7 +116,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func handleSwipeEvent(gesture: UISwipeGestureRecognizer) {
@@ -130,9 +123,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*if (inSearchMode) {
-            return searchedMovies.count
-        }*/
         return movies.count;
     }
     
@@ -149,7 +139,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         println("Hello I am at row \(indexPath.row) and section \(indexPath.section)")
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell") as MovieCell
 
-//        var loadMovies = self.inSearchMode ? self.searchedMovies : self.movies
         var loadMovies = self.movies
         var movie = loadMovies[indexPath.row]
         cell.titleLabel.text = movie["title"] as? String

@@ -85,31 +85,6 @@ class MovieDetailViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func handlePanGesture() {
         NSLog("Panning!!!!")
-/*        var translation: CGPoint  = panGestureRecognizer.translationInView(self.view)
-        if (lastPanTranslation == nil) {
-            lastPanTranslation = translation
-        }
-        self.handlingGesture = true
-        
-        var distance = translation.y - lastPanTranslation.y
-        lastPanTranslation = translation
-        // Translate the view's bounds, but do not permit values that would violate contentSize
-        var movieDetailViewFrame = self.movieDetailView.frame
-        var finalMovieDetailY = movieDetailViewFrame.origin.y + distance;
-        if (finalMovieDetailY < 60) {
-            movieDetailViewFrame.origin.y = 60
-        } else if (finalMovieDetailY > 490) {
-            movieDetailViewFrame.origin.y = 490
-        } else {
-            movieDetailViewFrame.origin.y = finalMovieDetailY
-        }
-        self.movieDetailView.frame = movieDetailViewFrame
-        NSLog("\(distance)")
-        // Reset the state after the gest is done
-        if (panGestureRecognizer.state == UIGestureRecognizerState.Ended) {
-            self.handlingGesture = false
-            lastPanTranslation = nil
-        }*/
     }
 
     func tappedMovieImageView() {
