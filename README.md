@@ -22,4 +22,4 @@ Notes: Spent a lot of time on focussing on UX
 
 Walkthrough of all user stories:
 
-![Video Walkthrough](anim_rotten_tomatoes.gif)
+![Video Walkthrough](gifDemo.gif)
