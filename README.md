@@ -23,3 +23,5 @@ Notes: Spent a lot of time on focussing on UX
 Walkthrough of all user stories:
 
 ![Video Walkthrough](gifDemo.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
