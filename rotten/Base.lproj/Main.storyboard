@@ -78,7 +78,7 @@
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882354378700256" green="0.25882354378700256" blue="0.25882354378700256" alpha="1" colorSpace="deviceRGB"/>
-                                        <color key="tintColor" patternImage="E0398DE1-A0C3-4E3D-AA28-4899CEF4CD7A" colorSpace="pattern"/>
+                                        <color key="tintColor" patternImage="E84CED5D-CFFA-40C7-87BA-8C095E369859" colorSpace="pattern"/>
                                         <connections>
                                             <outlet property="posterView" destination="wUz-K2-oca" id="vUW-bp-hun"/>
                                             <outlet property="ratingLabel" destination="rZU-RP-P2y" id="KI4-sk-D0d"/>
@@ -100,6 +100,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tabBar contentMode="scaleToFill" barStyle="black" id="OPs-Nb-nxA">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <tabBarItem title="Movies" image="moviesIcon.png" id="39x-rA-7tQ"/>
+                                    <tabBarItem title="DVDs" image="dvdIcon.png" id="rJg-J6-EUC"/>
+                                </items>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="selectedImageTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -107,8 +117,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="cgA-WH-RhT"/>
                     <connections>
+                        <outlet property="dvdsTabBarItem" destination="rJg-J6-EUC" id="sZZ-5H-ccp"/>
                         <outlet property="moviesSearchBar" destination="Hff-QG-jmh" id="5LS-Bq-3rb"/>
+                        <outlet property="moviesTabBarItem" destination="39x-rA-7tQ" id="NSd-wg-Sek"/>
                         <outlet property="networkErrorLabel" destination="SkF-CW-JSf" id="aSm-vA-9mc"/>
+                        <outlet property="tabBar" destination="OPs-Nb-nxA" id="tK3-7Q-Yje"/>
                         <outlet property="tableView" destination="QaK-KD-Igk" id="xUC-uz-8Dj"/>
                     </connections>
                 </viewController>
@@ -244,7 +257,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="E0398DE1-A0C3-4E3D-AA28-4899CEF4CD7A" width="512" height="512">
+        <image name="E84CED5D-CFFA-40C7-87BA-8C095E369859" width="512" height="512">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGTk9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEQcI
 ExQZHh8nKzIzNDw/QkhLVSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NW
@@ -17785,8 +17798,8 @@ tc42zrbPN8+40DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp22vvbgNwF3Ird
 EN2W3hzeot8p36/gNuC94UThzOJT4tvjY+Pr5HPk/OWE5g3mlucf56noMui86Ubp0Opb6uXrcOv77Ibt
 Ee2c7ijutO9A78zwWPDl8XLx//KM8xnzp/Q09ML1UPXe9m32+/eK+Bn4qPk4+cf6V/rn+3f8B/yY/Sn9
 uv5L/tz/bf//gAjSLC0uL1okY2xhc3NuYW1lWCRjbGFzc2VzXU5TTXV0YWJsZURhdGGjLjAxVk5TRGF0
-YVhOU09iamVjdF8QMHt7MCwgMH0sIHszNjAyODc5NzAxODk2Mzk2OCwgMzYwMjg3OTcwMTg5NjM5Njh9
-fV8QMHt7MCwgMH0sIHszNjAyODc5NzAxODk2Mzk2OCwgMzYwMjg3OTcwMTg5NjM5Njh9fdMsLTU2Nzpb
+YVhOU09iamVjdF8QMHt7MCwgMH0sIHs3MjA1NzU5NDAzNzkyNzkzNiwgNzIwNTc1OTQwMzc5Mjc5MzZ9
+fV8QMHt7MCwgMH0sIHs3MjA1NzU5NDAzNzkyNzkzNiwgNzIwNTc1OTQwMzc5Mjc5MzZ9fdMsLTU2Nzpb
 JGNsYXNzaGludHNfEBROU0NHSW1hZ2VTbmFwc2hvdFJlcKM4OTFfEBROU0NHSW1hZ2VTbmFwc2hvdFJl
 cFpOU0ltYWdlUmVwoTtfEBBOU0NhY2hlZEltYWdlUmVw0iwtPT5XTlNBcnJheaI9MdIsLUBBXk5TTXV0
 YWJsZUFycmF5o0A9MdNDRApFRkdXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgA/SLC1JSldOU0Nv
@@ -17799,6 +17812,8 @@ D5YAEA+ZABAPngAQD60AEA+xABAPuAAQD8AAEA/NABAP0gAQD9QAEA/WABAP2wAQD+MAEA/mABAP6wAQ
 D/MAEA/2ABAQCAAQEAsAEBAQAAAAAAAABAEAAAAAAAAAUgAAAAAAAAAAAAAAAAAQEBI
 </mutableData>
         </image>
+        <image name="dvdIcon.png" width="32" height="32"/>
+        <image name="moviesIcon.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UITabBarDelegate {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -17,6 +17,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var networkErrorLabel: UILabel!
     @IBOutlet weak var moviesSearchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var moviesTabBarItem: UITabBarItem!
+    @IBOutlet weak var dvdsTabBarItem: UITabBarItem!
+    @IBOutlet weak var tabBar: UITabBar!
 
     var movies: [NSDictionary] = []
     var newIndexRowRequestedForTableView = false
@@ -27,12 +30,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var refreshControl:UIRefreshControl!
     var inSearchMode = false
     var searchedMovies: [NSDictionary] = []
+    var moviesTabBarSelected = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         moviesSearchBar.delegate = self
+        tabBar.delegate = self
         
         // Show the loading screen here.
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -51,6 +56,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.refreshControl.tintColor = UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)
         self.refreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl)
+
+        tabBar.selectedImageTintColor = UIColor(red: 218.0/255.0, green: 165.0/255.0, blue: 32.0/255.0, alpha: 1.0)
+        tabBar.selectedItem = moviesTabBarItem
     }
     
     func makeAPIRequest(isRefreshing: Bool, request: NSURLRequest) {
@@ -77,6 +85,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func loadMovies(isRefreshing: Bool) {
         // Do any additional setup after loading the view.
         var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=axku2sndnpg2d6dhjw59wj3d&limit=20&country=us"
+        var request = NSURLRequest(URL: NSURL(string: url))
+        makeAPIRequest(isRefreshing, request: request)
+    }
+    
+    func loadDvds(isRefreshing: Bool) {
+        // Do any additional setup after loading the view.
+        var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=axku2sndnpg2d6dhjw59wj3d&page_limit=20&country=us"
         var request = NSURLRequest(URL: NSURL(string: url))
         makeAPIRequest(isRefreshing, request: request)
     }
@@ -110,8 +125,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.view.endEditing(true);
     }
     
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        if (item.title == "Movies") {
+            self.moviesTabBarSelected = true
+            self.navigationItem.title = "Movies"
+            loadMovies(false)
+        } else {
+            self.moviesTabBarSelected = false
+            self.navigationItem.title = "DVDs"
+            loadDvds(false)
+        }
+    }
+    
     func refresh() {
-        loadMovies(true)
+        if (self.moviesTabBarSelected) {
+            loadMovies(true)
+        } else {
+            loadDvds(true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -196,6 +227,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         var moviesTableViewFrame = self.tableView.frame
                         moviesTableViewFrame.origin.y += moviesSearchBarFrame.height
                         self.tableView.frame = moviesTableViewFrame
+                        self.tabBar.alpha = 1.0
                     })
                 }
             } else {
@@ -214,6 +246,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                         var moviesTableViewFrame = self.tableView.frame
                         moviesTableViewFrame.origin.y -= moviesSearchBarFrame.height
                         self.tableView.frame = moviesTableViewFrame
+                        self.tabBar.alpha = 0.0
                     })
                 }
             }
