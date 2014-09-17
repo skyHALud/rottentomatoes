@@ -172,7 +172,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             tomatoIcon = "splashTomato.png"
         }
 
+        cell.posterView.alpha=0
         cell.posterView.setImageWithURL(NSURL(string: posterUrl))
+
+        // Fade in the thumbnail images
+        UIView.animateWithDuration(0.3, animations: {
+            cell.posterView.alpha = 1
+        })
         cell.tomatoIconView.image = UIImage(named: tomatoIcon)
         cell.rottenScoreLabel.text = "\(criticsScore)%"
         cell.ratingLabel.text = movie["mpaa_rating"] as? String
