@@ -15,3 +15,11 @@ Completed User Stories:
  * [x] Optional: Customize the navigation bar
  * [x] Optional: Add a tab bar for Box Office and DVD.
  * [x] Optional: Add a search bar.
+
+Notes: Spent a lot of time on focussing on UX
+1. When a user scrolls up the search bar and the tabs hide away. They dont happen immediately but rather when I know that the user is in browsing mode and does not need the search bar. 
+2. User clicks on the full poster image, he/she gets to see uninterrupted full screen view of the poster.
+
+Walkthrough of all user stories:
+
+![Video Walkthrough](anim_rotten_tomatoes.gif)
