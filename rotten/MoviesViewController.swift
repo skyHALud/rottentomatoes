@@ -53,10 +53,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.addSubview(self.refreshControl)
     }
     
-    func loadMovies(isRefreshing: Bool) {
-        // Do any additional setup after loading the view.
-        var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=axku2sndnpg2d6dhjw59wj3d&limit=20&country=us"
-        var request = NSURLRequest(URL: NSURL(string: url))
+    func makeAPIRequest(isRefreshing: Bool, request: NSURLRequest) {
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             if ((error) != nil) {
                 self.moviesSearchBar.hidden = true
@@ -77,24 +74,40 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    func loadMovies(isRefreshing: Bool) {
+        // Do any additional setup after loading the view.
+        var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=axku2sndnpg2d6dhjw59wj3d&limit=20&country=us"
+        var request = NSURLRequest(URL: NSURL(string: url))
+        makeAPIRequest(isRefreshing, request: request)
+    }
+    
+    func searchMovies(searchTerm: String) {
+        // Do any additional setup after loading the view.
+        var escapedSearchTerm = searchTerm.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        var url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=\(escapedSearchTerm!)&page_limit=20&apikey=axku2sndnpg2d6dhjw59wj3d&country=us"
+        var request = NSURLRequest(URL: NSURL(string: url))
+        makeAPIRequest(false, request: request)
+    }
     
     
     func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!){
         if (searchText == "") {
             NSLog("Empty seach text")
             self.inSearchMode = false
-            self.tableView.reloadData()
+            loadMovies(false)
             return
         }
         self.inSearchMode = true
-        searchedMovies = []
+/*        searchedMovies = []
         for movie in self.movies {
             var title = movie["title"] as String
             if title.lowercaseString.rangeOfString(searchText.lowercaseString) != nil {
                 searchedMovies.append(movie)
             }
         }
-        self.tableView.reloadData()
+        self.tableView.reloadData()*/
+        searchMovies(searchText)
+        NSLog(searchText)
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -117,9 +130,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (inSearchMode) {
+        /*if (inSearchMode) {
             return searchedMovies.count
-        }
+        }*/
         return movies.count;
     }
     
@@ -136,7 +149,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         println("Hello I am at row \(indexPath.row) and section \(indexPath.section)")
         var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell") as MovieCell
 
-        var loadMovies = self.inSearchMode ? self.searchedMovies : self.movies
+//        var loadMovies = self.inSearchMode ? self.searchedMovies : self.movies
+        var loadMovies = self.movies
         var movie = loadMovies[indexPath.row]
         cell.titleLabel.text = movie["title"] as? String
         cell.synopsisLabel.text = movie["synopsis"] as? String
